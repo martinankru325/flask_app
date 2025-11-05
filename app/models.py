@@ -1,5 +1,5 @@
 from . import db
-from datetime import datetime
+
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -8,6 +8,7 @@ class Client(db.Model):
     credit_card = db.Column(db.String(50))
     car_number = db.Column(db.String(50))
 
+
 class Parking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     address = db.Column(db.String(100), nullable=False)
@@ -15,10 +16,13 @@ class Parking(db.Model):
     count_places = db.Column(db.Integer, nullable=False)
     count_available_places = db.Column(db.Integer, nullable=False)
 
+
 class ClientParking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
-    parking_id = db.Column(db.Integer, db.ForegnKey('parking.id'))
+    client_id = db.Column(db.Integer, db.ForeignKey("client.id"))
+    parking_id = db.Column(db.Integer, db.ForegnKey("parking.id"))
     time_in = db.Column(db.DateTime)
     time_out = db.Column(db.DateTime)
-    __table_args__ = (db.UniqueConstraint('client_id', 'parking_id', name='unique_client_parking'),)
+    __table_args__ = (
+        db.UniqueConstraint("client_id", "parking_id", name="unique_client_parking"),
+    )
