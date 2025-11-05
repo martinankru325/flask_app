@@ -1,8 +1,8 @@
 import factory
+from app import db
+from app.models import Client, ClientParking, Parking  # noqa: F401
 from factory.alchemy import SQLAlchemyModelFactory
 from faker import Faker
-from app.models import Client, Parking
-from app import db
 
 faker = Faker()
 
@@ -18,7 +18,8 @@ class ClientFactory(SQLAlchemyModelFactory):
     credit_card = factory.LazyAttribute(
         lambda _: faker.credit_card_number() if faker.boolean() else None
     )
-    car_number = factory.LazyAttribute(lambda _: faker.bothify(text="???-####"))
+    car_number = factory.LazyAttribute(
+        lambda _: faker.bothify(text="???-####"))
 
 
 class ParkingFactory(SQLAlchemyModelFactory):
@@ -29,7 +30,8 @@ class ParkingFactory(SQLAlchemyModelFactory):
 
     address = factory.LazyAttribute(lambda _: faker.address())
     opened = factory.LazyAttribute(lambda _: faker.boolean())
-    count_places = factory.LazyAttribute(lambda _: faker.random_int(min=1, max=100))
+    count_places = factory.LazyAttribute(
+        lambda _: faker.random_int(min=1, max=100))
     count_available_places = factory.LazyAttribute(lambda o: o.count_places)
 
 
