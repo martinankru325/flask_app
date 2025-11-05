@@ -1,8 +1,9 @@
 import factory
-from app import db
-from app.models import Client, ClientParking, Parking  # noqa: F401
 from factory.alchemy import SQLAlchemyModelFactory
 from faker import Faker
+
+from app import db
+from app.models import Client, ClientParking, Parking  # noqa: F401
 
 faker = Faker()
 
