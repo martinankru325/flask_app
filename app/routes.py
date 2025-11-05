@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify, request, abort
-from .models import Client, Parking, ClientParking, db
 from datetime import datetime
+
+from flask import Blueprint, abort, jsonify, request
+
+from .models import Client, ClientParking, Parking, db
 
 bp = Blueprint("api", __name__)
 
