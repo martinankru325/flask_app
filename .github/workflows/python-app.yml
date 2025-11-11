@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PYTHONPATH: ${{ github.workspace }}  # <-- чтобы 'app' импортировался
+
     steps:
       - uses: actions/checkout@v3
 
